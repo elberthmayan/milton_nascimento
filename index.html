@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milton Nascimento: A Voz de Minas</title>
+    
+    <!-- Carrega o Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Carrega as fontes (Inter e Lora) --><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Lora:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Carrega ícones (Ionicons) --><script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <style>
+        /* --- ESTILOS CUSTOMIZADOS (V5.6: "SÉPIA & PERGAMINHO" com Fundo de Notas Reais) --- */
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfaf5; /* Cor base */
+            
+            /* NOVO: Fundo com Padrão de Notas Musicais Reais */
+            background-image: 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ctext x='10' y='30' font-size='30' fill='%23e0d9cf' opacity='0.3' transform='rotate(15 10 30)'%3E%26%239835%3B%3C/text%3E%3Ctext x='70' y='60' font-size='20' fill='%23e0d9cf' opacity='0.3' transform='rotate(-10 70 60)'%3E%26%239833%3B%3C/text%3E%3Ctext x='40' y='85' font-size='25' fill='%23e0d9cf' opacity='0.3' transform='rotate(5 40 85)'%3E%26%239834%3B%3C/text%3E%3C/svg%3E"),
+                radial-gradient(circle at 50% 0%, #fffbf2 0%, #fdfaf5 40%);
+            
+            background-size: 150px, 100% 100%; /* Padrão repete (menor), gradiente cobre */
+
+            color: #3d352e; /* Marrom-escuro (quase preto) para texto */
+            overflow-x: hidden; 
+            position: relative; 
+            padding-bottom: 100px;
+        }
+
+        /* 1. Título Hero (Cor Dourado-Escuro, conforme pedido) */
+        .hero-title {
+            font-family: 'Lora', serif;
+            color: #b8860b; /* Dourado-escuro (Dark Goldenrod) */
+            text-shadow: 0 1px 1px rgba(61, 53, 46, 0.1); /* Sombra muito sutil */
+        }
+        
+        h1, h2, h3, .song-button h4, .video-button h4, .quote {
+            font-family: 'Lora', serif;
+        }
+        
+        /* Títulos de Seção (H2) */
+        h1 { font-weight: 900; color: #332d27; } /* Marrom mais escuro para H1 */
+        h2 { 
+            font-weight: 700; 
+            color: #8c5a3c; /* SÉPIA para destaque */
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Títulos de Card (H3) */
+        .glass-card h3 {
+             color: #332d27;
+        }
+
+
+        /* 2. "Paper Card" (Estilo Sépia) */
+        .glass-card {
+            background-color: #ffffff; /* Branco puro */
+            color: #3d352e;
+            /* Borda SÉPIA FIXA (conforme pedido) */
+            border: 1px solid #8c5a3c; 
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(61, 53, 46, 0.08); /* Sombra marrom bem suave */
+            transition: all 0.3s ease-in-out;
+            /* Efeito de 'subir' REMOVIDO (conforme pedido) */
+        }
+        .glass-card:hover {
+            /* Hover não muda mais a borda nem a posição */
+            box-shadow: 0 8px 15px rgba(61, 53, 46, 0.1); /* Apenas a sombra intensifica */
+        }
+
+        /* Overrides de Cor para o "Paper Card" (Sépia) */
+        .glass-card p {
+            color: #4a423b; /* Texto do parágrafo mais escuro (melhor contraste) */
+        }
+        .glass-card strong {
+            color: #8c5a3c; /* SÉPIA */
+        }
+        .glass-card .song-button,
+        .glass-card .video-button {
+            color: #3d352e !important;
+        }
+        .glass-card .song-button p,
+        .glass-card .video-button p {
+            color: #7a6d62 !important; /* Cinza-marrom mais claro */
+        }
+        .glass-card .song-button:hover:not(.active),
+        .glass-card .video-button:hover:not(.active) {
+            background-color: #f9f6f1; /* Fundo de pergaminho muito sutil no hover */
+        }
+
+
+        /* 3. Citação (Cor Sépia) */
+        .quote {
+            color: #8c5a3c; /* SÉPIA */
+        }
+
+        /* 4. Player de Música (Botão Ativo - Sépia) */
+        .song-button.active,
+        .video-button.active {
+            background-color: #f9f6f1; /* Fundo pergaminho sutil */
+            color: #8c5a3c !important; /* SÉPIA */
+        }
+        .song-button.active h4,
+        .video-button.active h4 {
+            color: #8c5a3c !important; /* SÉPIA */
+        }
+        
+        /* 5. Abas (Tabs) - Estilo Pílula (Sépia) */
+        .tab-button {
+            transition: all 0.2s ease-in-out;
+            border-radius: 9999px;
+            border: 2px solid transparent;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            color: #7a6d62; /* Cinza-marrom */
+        }
+        .tab-button.active {
+            color: #ffffff; /* Texto branco */
+            background-color: #8c5a3c; /* Fundo SÉPIA */
+            font-weight: 700;
+        }
+        .tab-button:hover:not(.active) {
+            color: #8c5a3c; /* SÉPIA */
+            background-color: #f9f6f1; /* Fundo pergaminho sutil */
+        }
+
+        /* 6. Animação de Scroll (Mantida) */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+            transition-delay: 0.1s; 
+        }
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 7. "Hotspots" da Filosofia (Sépia) */
+        .hotspot {
+            color: #8c5a3c; /* SÉPIA */
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-underline-offset: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .hotspot:hover {
+            color: #3d352e;
+            background-color: #f9f6f1;
+        }
+        .hotspot.active {
+            color: #ffffff; /* Texto branco */
+            background-color: #8c5a3c; /* Fundo SÉPIA */
+            text-decoration: none;
+            border-radius: 4px;
+            padding: 0 4px;
+        }
+        
+        #hotspot-display {
+            background-color: #fdfaf5; /* Fundo pergaminho claro */
+            border: 1px solid #e0d9cf; /* Borda pergaminho */
+            border-radius: 0.5rem;
+            min-height: 120px; 
+            transition: all 0.3s ease;
+        }
+        #hotspot-display p { color: #4a423b; } /* Texto mais escuro */
+        #hotspot-display strong { color: #8c5a3c; } /* SÉPIA */
+
+
+        /* 8. Player de Vídeo */
+        .responsive-iframe-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding-top: 56.25%;
+            border-radius: 0.5rem; 
+            border: 1px solid #e0d9cf; /* Borda Pergaminho */
+            background-color: #000;
+        }
+        .responsive-iframe-container iframe,
+        .responsive-iframe-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 9. Foto de Perfil (Mantido) */
+
+
+        /* 10. Estilos do Player de MP3 (Cores Sépia) */
+        #player-art {
+            border: 1px solid #e0d9cf; /* Borda Pergaminho */
+        }
+        #player-controls button {
+            background-color: transparent;
+            border: none;
+            color: #7a6d62; /* Cinza-marrom */
+            font-size: 2rem;
+            line-height: 1;
+            padding: 0.5rem;
+            border-radius: 9999px;
+            transition: all 0.2s ease;
+        }
+        #player-controls button:hover {
+            background-color: #f9f6f1;
+            color: #8c5a3c; /* SÉPIA */
+        }
+        
+        #player-play-pause {
+            font-size: 2.5rem;
+            background-color: rgba(140, 90, 60, 0.1); /* Fundo SÉPIA sutil */
+            color: #8c5a3c; /* SÉPIA */
+        }
+        #player-play-pause:hover {
+            background-color: rgba(140, 90, 60, 0.2); /* SÉPIA */
+            color: #8c5a3c;
+        }
+
+        #player-scrubber {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            background: #e0d9cf; /* Fundo pergaminho */
+            border-radius: 5px;
+            outline: none;
+            transition: opacity 0.2s;
+            cursor: pointer;
+        }
+        #player-scrubber::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #8c5a3c; /* SÉPIA */
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #ffffff; /* Fundo do card */
+        }
+        #player-scrubber::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            background: #8c5a3c; /* SÉPIA */
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #ffffff; /* Fundo do card */
+        }
+
+
+        /* 11. Estilos do Mini-Player Flutuante (Tema Sépia) */
+        #mini-player {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            border-radius: 0;
+            border-left: none;
+            border-right: none;
+            border-bottom: 1px solid #8c5a3c; /* Borda Sépia */
+            transform: translateY(100%);
+            transition: transform 0.4s ease-out;
+            /* O .glass-card já define o fundo branco e a sombra */
+        }
+        #mini-player.visible {
+            transform: translateY(0);
+        }
+        
+        /* Overrides de Cor para o Mini-Player (Sépia) */
+        #mini-player p, #mini-player button {
+            color: #3d352e !important;
+        }
+        #mini-player p.text-amber-400 { /* Classe original do HTML */
+            color: #8c5a3c !important; /* SÉPIA */
+        }
+        #mini-player button.text-amber-400,
+        #mini-player button.text-amber-300 {
+            color: #8c5a3c !important; /* SÉPIA */
+        }
+        #mini-player button.text-gray-400 {
+            color: #7a6d62 !important; /* Cinza-marrom */
+        }
+        #mini-player button:hover {
+            background-color: #f9f6f1;
+        }
+        #mini-player #mini-player-close {
+             background-color: #fdfaf5; /* Fundo pergaminho */
+             border: 1px solid #e0d9cf;
+        }
+        #mini-player #mini-player-close:hover {
+            background-color: #ffffff;
+        }
+
+        /* 12. Modal de Vídeo (NOVO ESTILO) */
+        #video-modal {
+            background-color: rgba(253, 250, 245, 0.8); /* Fundo pergaminho semi-transparente */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: opacity 0.3s ease;
+        }
+        #video-modal-content {
+            background-color: #ffffff;
+            border: 1px solid #8c5a3c; /* Borda sépia */
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 30px rgba(61, 53, 46, 0.2);
+            overflow: hidden; /* Para o vídeo não vazar */
+        }
+        #modal-video {
+            max-height: 80vh; /* Limita a altura */
+            border-radius: 0; /* Vídeo sem borda, o card já tem */
+        }
+        #modal-close-btn {
+            position: absolute;
+            top: -1rem;
+            right: -1rem;
+            z-index: 10;
+            background-color: #8c5a3c; /* Botão sépia */
+            color: #ffffff; /* Ícone branco */
+            border-radius: 9999px;
+            width: 2.5rem; /* 40px */
+            height: 2.5rem; /* 40px */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(61, 53, 46, 0.3);
+            transition: all 0.2s ease;
+        }
+        #modal-close-btn:hover {
+            background-color: #332d27; /* Marrom escuro no hover */
+            transform: scale(1.1);
+        }
+        #modal-close-btn ion-icon {
+            font-size: 1.5rem; /* 24px */
+        }
+
+
+        /* Footer */
+        footer {
+            border-top-color: #e0d9cf; /* Borda pergaminho */
+            color: #9c8f85; /* Cinza-marrom bem claro */
+        }
+
+
+        /* Posição no PC: canto inferior direito */
+        @media (min-width: 768px) {
+            #mini-player {
+                bottom: 1.5rem;
+                left: auto;
+                right: 1.5rem;
+                width: auto;
+                max-width: 384px;
+                border-radius: 0.75rem;
+                border: 1px solid #8c5a3c; /* Borda Sépia */
+                transform: translateY(100px);
+                opacity: 0;
+                transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+            }
+            #mini-player.visible {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Wrapper Principal --><div class="container mx-auto max-w-3xl p-4 md:p-6 relative z-10">
+
+        <!-- 1. Seção Hero (Título e Imagem) --><header class="text-center my-12 md:my-16 relative scroll-animate">
+            
+            <!-- Borda marrom/âmbar (V5) -->
+            <img src="IMG/foto_perfil.jpg" 
+                 alt="Foto de Milton Nascimento"
+                 class="relative z-10 w-36 h-36 md:w-44 md:h-44 rounded-full object-cover mx-auto mb-6 border-4 border-yellow-900 shadow-xl shadow-amber-500/20 transition-all duration-300 hover:scale-105 hover:shadow-amber-500/40">
+            
+            <h1 class="text-4xl md:text-6xl font-black mb-3 z-10 relative">
+                Milton Nascimento
+            </h1>
+            
+            <p class="hero-title text-xl md:text-3xl font-semibold z-10 relative">
+                A Voz de Minas
+            </p>
+        </header>
+
+        <!-- Layout em Grid --><div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 my-12">
+            
+            <!-- 2. Seção: Quem é? --><section class="scroll-animate">
+                <div class="glass-card p-6 md:p-8 h-full">
+                    <h3 class="text-2xl font-extrabold mb-4">Quem é o Artista?</h3>
+                    <p class="text-base md:text-lg leading-relaxed">
+                        Milton Nascimento, também conhecido como <strong>"Bituca"</strong>, nasceu no Rio, mas é mineiro de coração (de <strong>Três Pontas - MG</strong>). Ele não é apenas um músico; é um verdadeiro patrimônio. O que o torna tão especial é sua voz única e uma mistura de sons muito própria: tem bossa nova, jazz, rock e até a música barroca das igrejas de Minas.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 3. Seção: O Movimento --><section class="scroll-animate">
+                <div class="glass-card p-6 md:p-8 h-full">
+                    <h3 class="text-2xl font-extrabold mb-4">O Clube da Esquina</h3>
+                    <p class="text-base md:text-lg leading-relaxed">
+                        A importância do Bituca vai muito além do Brasil. Ele foi quem fundou o Dúvidas, sugestões ou apenas querendo bater um papo sobre música e filosofia? Dúvidas, sugestões ou apenas querendo bater um papo sobre música e filosofia? <strong>"Clube da Esquina"</strong>, um movimento de músicos que simplesmente revolucionou a MPB. Ele levou o som brasileiro para o mundo todo, sendo reconhecido lá fora como uma das maiores vozes do planeta.
+                    </o>
+                </div>
+            </section>
+        </div>
+
+        <!-- 4. Seção: Visão de Mundo (HOTSPOTS INTERATIVOS) --><section class="my-12 scroll-animate">
+            <h2 class="text-3xl font-extrabold mb-6 text-center">A Filosofia do Bituca</h2>
+            
+            <div class="glass-card p-5 md:p-8">
+                <!-- Classe 'text-amber-300' removida -->
+                <blockquote idid="filosofia-quote" class="quote text-2xl md:text-3xl font-medium italic mb-6 leading-relaxed text-center p-4">
+                    "Há que se cuidar do <span class="hotspot" data-hotspot="broto">broto</span><br>
+                    pra que a vida nos dê <span class="hotspot" data-hotspot="flor">flor</span> e <span class="hotspot" data-hotspot="fruto">fruto</span>."
+                </blockquote>
+                
+                <!-- Citação da música --><p class="text-right text-sm text-gray-400 italic pr-4 -mt-4 mb-6">
+                    - Trecho de "Coração de Estudante"
+                </p>
+                
+                <!-- Display de Explicação --><div id="hotspot-display" class="p-5 md:p-6">
+                    <p id="hotspot-text" class="text-base md:text-lg leading-relaxed transition-all duration-300">
+                        Conheça um pouco da filosofia do Bituca. <strong>Toque nas palavras</strong> da citação acima para entender melhor o que elas significam.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Seção: Resistência e Identidade (Abas) --><section class="my-12 scroll-animate">
+            <h2 class="text-3xl font-extrabold mb-6 text-center">Mensagem e Resistência</h2>
+            <div class="glass-card p-5 md:p-8">
+                <p class="text-base md:text-lg text-center mb-6">A música de Milton nunca foi só sobre melodia. É uma arma poderosa de <strong>resistência e um grito de orgulho da identidade negra</strong>.</p>
+
+                <!-- Abas Interativas (Tabs) - (CSS MUDA DE PÍLULA PARA ABA) --><div id="tabs-container">
+                    <div class="flex justify-center space-x-2 md:space-x-4 mb-6">
+                        <button class="tab-button active text-sm p-2 px-3 md:text-base md:p-3 md:px-5" data-tab="0">Justiça Social</button>
+                        <button class="tab-button text-sm p-2 px-3 md:text-base md:p-3 md:px-5" data-tab="1">Identidade Negra</button>
+                        <button class="tab-button text-sm p-2 px-3 md:text-base md:p-3 md:px-5" data-tab="2">União</button>
+                    </div>
+
+                    <!-- Conteúdo das Abas --><div class="tab-content px-2">
+                        <p class="text-base md:text-lg leading-relaxed">
+                            Em plena ditadura militar, quando falar qualquer coisa era perigoso, a voz de Milton era um farol. A música <strong>"Coração de Estudante"</strong> (com Wagner Tiso) virou o hino das "Diretas Já", cantada por multidões que pediam o fim da ditadura. Outro exemplo é <strong>"Maria, Maria"</strong>, que deu voz e dignidade à luta diária da mulher pobre e trabalhadora.
+                        </p>
+                    </div>
+                    <div class="tab-content px-2 hidden">
+                        <p class="text-base md:text-lg leading-relaxed">
+                            Bituca nunca escondeu suas raízes. A <strong>"Missa dos Quilombos"</strong>, por exemplo, foi um ato revolucionário. Ele levou os tambores africanos e a memória da escravidão para dentro da igreja. Não era só uma denúncia, era uma celebração da fé negra, um grito de orgulho dizendo: 'Nós existimos, e nossa história também é sagrada'.
+                        </p>
+                     </div>
+                    <div class="tab-content px-2 hidden">
+                        <p class="text-base md:text-lg leading-relaxed">
+                            O <strong>"Clube da Esquina"</strong> foi a maior prova de que a união cria coisas novas. Ele e seus amigos (como Lô Borges e Beto Guedes) <strong>não se prendiam a rótulos</strong>. Eles simplesmente misturaram o rock dos Beatles com o som barroco de Minas, jazz e bossa nova. O resultado? Criaram um som universal que saiu de uma simples esquina em BH para conquistar o mundo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 6. Seção: Player de Música (PLAYER PRINCIPAL V10) --><section class="my-12 scroll-animate">
+            <h2 class="text-3xl font-extrabold mb-6 text-center">Conheça Suas Músicas</h2>
+            
+            <div class="glass-card overflow-hidden md:flex">
+                <!-- "Playlist" (Coluna Esquerda) --><div class="md:w-1/2 p-3 md:p-5 space-y-2 border-b md:border-b-0 md:border-r border-neutral-700/50">
+                    
+                    <button class="song-button active w-full text-left p-4 rounded-lg transition-all duration-200" data-song="0">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="text-md md:text-lg font-semibold">Maria, Maria</h4>
+                                <p class="text-sm text-gray-400">O hino da força e resiliência.</p>
+                            </div>
+                        </div>
+                    </button>
+                    
+                    <button class="song-button w-full text-left p-4 rounded-lg transition-all duration-200" data-song="1">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="text-md md:text-lg font-semibold">Travessia</h4>
+                                <p class="text-sm text-gray-400">A música que o lançou para o mundo.</p>
+                            </div>
+                        </div>
+                    </button>
+                    
+                    <button class="song-button w-full text-left p-4 rounded-lg transition-all duration-200" data-song="2">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="text-md md:text-lg font-semibold">Canção da América</h4>
+                                <p class="text-sm text-gray-400">A celebração da amizade e da união.</p>
+                            </div>
+                        </div>
+                    </button>
+
+                </div>
+
+                <!-- "Tela" do Player e Explicação (Coluna Direita) --><div class="md:w-1/2 p-5 md:p-6 flex flex-col justify-between">
+                    
+                    <!-- Player de Áudio Principal --><div class="w-full">
+                        <!-- Tag de áudio (ÚNICA FONTE DA VERDAADE) --><audio id="custom-player" src=""></audio>
+
+                        <img id="player-art" 
+                             src="IMG/maria_maria.jpg" 
+                             alt="Capa do Álbum"
+                             class="w-full aspect-video object-cover rounded-lg mb-4 shadow-lg">
+
+                        <h3 id="player-title" class="text-xl font-bold text-center mb-3">
+                            Maria, Maria
+                        </h3>
+
+                        <div class="flex items-center gap-2 text-xs text-gray-400 mb-2">
+                            <span id="player-current-time">0:00</span>
+                            <input type="range" id="player-scrubber" value="0" max="100" class="w-full">
+                            <span id="player-total-time">0:00</span>
+                        </div>
+
+                        <div id="player-controls" class="flex items-center justify-center gap-4">
+                            <button id="player-prev" title="Anterior">
+                                <ion-icon name="play-skip-back-outline"></ion-icon>
+                            </button>
+                            <button id="player-play-pause" title="Play/Pause">
+                                <ion-icon name="play-outline"></ion-icon>
+                            </button>
+                            <button id="player-next" title="Próxima">
+                                <ion-icon name="play-skip-forward-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="song-explanation-container" class="mt-6">
+                        <p id="song-explanation-text" class="text-base md:text-lg transition-all duration-500">...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Conheça Mais Sobre o Bituca (VÍDEOS) --><section class="my-12 scroll-animate">
+            <h2 class="text-3xl font-extrabold mb-6 text-center">Conheça Mais Sobre o Bituca</h2>
+            
+            <div class="glass-card overflow-hidden md:flex">
+                <!-- Botões de vídeo --><div class="md:w-1/2 p-3 md:p-5 space-y-2 border-b md:border-b-0 md:border-r border-neutral-700/50">
+                    
+                    <!-- ### ALTERAÇÃO HTML AQUI (Textos atualizados) ### -->
+                    <button class="video-button active w-full text-left p-4 rounded-lg transition-all duration-200" data-video="0">
+                        <h4 class="text-md md:text-lg font-semibold">A Origem de Bituca</h4>
+                        <p class="text-sm text-gray-400">Dona Lilia e Seu Josino contam.</p>
+                    </button>
+                    
+                    <button class="video-button w-full text-left p-4 rounded-lg transition-all duration-200" data-video="1">
+                        <h4 class="text-md md:text-lg font-semibold">A Criação do 'Clube da Esquina'</h4>
+                        <p class="text-sm text-gray-400">Com Lô Borges, no 'O Som do Vinil'.</p>
+                    </button>
+                    
+                    <button class="video-button w-full text-left p-4 rounded-lg transition-all duration-200" data-video="2">
+                        <h4 class="text-md md:text-lg font-semibold">A Voz Única de Milton</h4>
+                        <p class="text-sm text-gray-400">Uma análise musical da sua técnica.</p>
+                    </button>
+                    <!-- ### FIM DA ALTERAÇÃO HTML ### -->
+
+                </div>
+
+                <!-- Player de Vídeo Modificado --><div class="md:w-1/2 p-5 md:p-6">
+                    <!-- Wrapper com proporção 16:9 --><div class="responsive-iframe-container mb-5 shadow-lg">
+                        
+                        <!-- ### ALTERAÇÃO HTML AQUI: Carrega o primeiro vídeo do Drive por padrão ### -->
+                        <iframe id="video-iframe"
+                                src="https://drive.google.com/file/d/17CtbckdyQXSXoXtvL0DyQtc0CMgVIIsW/preview" 
+                                title="Player de Vídeo" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen></iframe>
+                        
+                        <!-- Player de Vídeo Local (Escondido) --><video id="local-video-player" 
+                               class="absolute top-0 left-0 w-full h-full hidden"
+                               controls 
+                               src="">
+                            Seu navegador não suporta a tag de vídeo.
+                        </video>
+
+                        <!-- Botão para abrir modal (só aparece para vídeo local) --><button id="expand-video-btn" class="absolute top-2 right-2 z-10 p-2 bg-black/50 rounded-full text-white hover:bg-black/80 transition-all hidden" title="Ver em tela cheia">
+                            <ion-icon name="expand-outline" class="text-xl block"></ion-icon>
+                        </button>
+                    </div>
+                    
+                    <div id="video-explanation-container">
+                        <p id="video-explanation-text" class="text-base md:text-lg transition-all duration-500">...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Rodapé --><footer class="text-center p-8 mt-12 border-t border-neutral-800 text-gray-500 scroll-animate">
+            <p>Trabalho de Filosofia</p>
+            <p>Escola Estadual Presidente Tancredo Neves</p>
+            <p>Turma: 3/6</p>
+        </footer>
+
+    </div>
+    
+    <!-- Mini-Player Flutuante (V5) --><div id="mini-player" class="fixed z-50 glass-card p-3 shadow-2xl hidden">
+        <div class="flex items-center gap-3">
+            <!-- Botão Fechar (só aparece no PC) --><button id="mini-player-close" class="hidden md:block absolute -top-2 -right-2 z-10 p-1 rounded-full" title="Fechar Player">
+                <ion-icon name="close-outline" class="text-lg block"></ion-icon>
+            </button>
+            
+            <!-- Capa --><img id="mini-player-art" src="IMG/maria_maria.jpg" alt="Capa" class="w-12 h-12 rounded-md object-cover">
+            
+            <!-- Info --><div class="flex-1 overflow-hidden">
+                <p id="mini-player-title" class="text-sm font-semibold truncate">Maria, Maria</p>
+                <p class="text-xs text-amber-400">Tocando agora...</p>
+            </div>
+            
+            <button id="mini-player-prev" class="text-3xl p-1 rounded-full" title="Anterior">
+                <ion-icon name="play-skip-back-outline" class="block"></ion-icon>
+            </button>
+            <button id="mini-player-play-pause" class="text-3xl p-1 rounded-full" title="Play/Pause">
+                <ion-icon name="play-outline" class="block"></ion-icon>
+            </button>
+            <button id="mini-player-next" class="text-3xl p-1 rounded-full" title="Próxima">
+                <ion-icon name="play-skip-forward-outline" class="block"></ion-icon>
+            </button>
+            
+            <button id="mini-player-close-mobile" class="md:hidden text-3xl p-1 rounded-full" title="Fechar Player">
+                 <ion-icon name="close-outline" class="block"></ion-icon>
+            </button>
+        </div>
+    </div>
+    <!-- Fim do Mini-Player -->
+    
+    <!-- Modal de Vídeo (V5) --><div id="video-modal" class="fixed inset-0 z-[999] flex items-center justify-center p-4 hidden opacity-0">
+        <div id="video-modal-content" class="relative w-full max-w-4xl">
+            <!-- Botão de Fechar o Modal --><button id="modal-close-btn" class="" title="Fechar">
+                <ion-icon name="close-outline" class="block"></ion-icon>
+            </button>
+            <!-- Player de Vídeo do Modal --><video id="modal-video" class="w-full h-auto" controls src=""></video>
+        </div>
+    </div>
+    <!-- Fim do Modal de Vídeo --><script>
+        // --- DB (Banco de Dados) Simulado ---
+        
+        const songDB = [
+            {
+                title: "Maria, Maria",
+                art: "IMG/maria_maria.jpg",
+                path: "music/Maria Maria.mp3",
+                explanation: "Essa música é um verdadeiro hino. Ela fala sobre a força, a fé e a 'magia' da mulher brasileira, especialmente a mulher pobre, que mesmo com todo o sofrimento, acorda todo dia com esperança para lutar."
+            },
+            {
+                title: "Travessia",
+                art: "IMG/travessia.jpg",
+                path: "music/Travessia.mp3",
+                explanation: "Foi com essa música que o Brasil descobriu quem era Milton, lá em 1967, em um festival. É uma canção muito profunda sobre seguir em frente e perdoar. A harmonia dela é tão diferente e bonita que, na época, parecia vir de outro mundo."
+            },
+            {
+                title: "Canção da América",
+                art: "IMG/canção_america.jpg",
+                path: "music/Milton Nascimento - Canção da América (1980).mp3", 
+                explanation: "Essa é clássica, um hino mundial sobre amizade. A letra fala sobre como amigos verdadeiros são 'anjos' que a vida nos dá, e como a amizade é um dos nossos portos seguros mais importantes."
+            }
+        ];
+
+        const hotspotDB = {
+            broto: "O 'broto' representa tudo que precisa de cuidado para crescer: a semente da amizade, a paciência para fazer arte, e a força para aguentar o dia a dia. É o começo de tudo que realmente importa.",
+            flor: "A 'flor' é quando a vida acontece. É a amizade que finalmente floresce (como em 'Canção da América'), é a beleza que resiste mesmo nas dificuldades, e é a 'gana' e a 'fé na vida' que a 'Maria, Maria' tem.",
+            fruto: "O 'fruto' é a nossa colheta. É o resultado que vem depois de cuidar do 'broto'. Pode ser a justiça, o amor, a união dos amigos, ou uma bela música que nasce da paciência e da verdade.",
+            default: "Conheça um pouco da filosofia do Bituca. <strong>Toque nas palavras</strong> da citação acima para entender melhor o que elas significam."
+        };
+
+        // ### ALTERAÇÃO JAVASCRIPT AQUI: Atualizando o link 1 (Clube da Esquina) ###
+        const videoDB = [
+            { 
+                type: "gdrive",
+                // Link 1 (Origem de Bituca)
+                path: "https://drive.google.com/file/d/17CtbckdyQXSXoXtvL0DyQtc0CMgVIIsW/preview",
+                id: null,
+                title: "A Origem de Bituca", // Texto "(por seus pais)" removido
+                explanation: "Um vídeo muito emocionante onde seus pais adotivos, Dona Lilia e Seu Josino, contam a história de como o 'Bituca' entrou na vida deles." 
+            },
+            { 
+                type: "youtube", // Corrigido de "yotubue"
+                // Este é o link do YouTube, convertido para /embed com start time
+                path: "https://www.youtube.com/embed/n8RT2KkHK5w?start=1120", 
+                id: null, // id não é mais necessário com esta abordagem
+                title: "A Criação do 'Clube da Esquina'", 
+                explanation: "Nesse trecho do programa 'O Som do Vinil', o próprio Milton e o Lô Borges contam as histórias de como eles compuseram esse álbum lendário." 
+            },
+            { 
+                type: "gdrive",
+                // Link 2 (A Voz Única)
+                path: "https://drive.google.com/file/d/1rsrQzAI7ReDo1Da4apyRB9XI88t9uUSz/preview",
+                id: null, 
+                title: "A Voz Única de Milton", 
+                explanation: "Aqui o próprio Bituca conta como sua voz se formou. Ele explica que, quando era criança, só gostava de ouvir vozes femininas e achava sua própria voz esquisita. Isso mudou quando ele ouviu Ray Charles e entendeu como a voz masculina também podia ser emocionante." 
+            }
+        ];
+        // ### FIM DA ALTERAÇÃO JAVASCRIPT ###
+
+
+        // --- Lógica de Animação de Scroll ---
+        const scrollElements = document.querySelectorAll('.scroll-animate');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        scrollElements.forEach(el => observer.observe(el));
+
+
+        // --- Lógica dos Componentes Interativos ---
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Lógica das Abas (Tabs) ---
+            const tabContainer = document.getElementById('tabs-container');
+            if (tabContainer) {
+                const tabButtons = tabContainer.querySelectorAll('.tab-button');
+                const tabContents = tabContainer.querySelectorAll('.tab-content');
+
+                tabContainer.addEventListener('click', (e) => {
+                    const clickedButton = e.target.closest('.tab-button');
+                    if (!clickedButton) return;
+                    const index = clickedButton.dataset.tab;
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    clickedButton.classList.add('active');
+                    tabContents.forEach(content => content.classList.add('hidden'));
+                    tabContents[index].classList.remove('hidden');
+                });
+            }
+
+            // ### Hotspots (Click e Touch) ###
+            const quoteContainer = document.getElementById('filosofia-quote');
+            const hotspotTextEl = document.getElementById('hotspot-text');
+            const hotspots = quoteContainer ? quoteContainer.querySelectorAll('.hotspot') : [];
+
+            // 1. Criamos uma função única para lidar com a interação
+            function handleHotspotInteraction(targetElement) {
+                const clickedHotspot = targetElement.closest('.hotspot');
+                
+                hotspots.forEach(h => h.classList.remove('active'));
+
+                if (clickedHotspot) {
+                    clickedHotspot.classList.add('active');
+                    hotspotTextEl.innerHTML = hotspotDB[clickedHotspot.dataset.hotspot];
+                    return true; // Retorna true se um hotspot foi ativado
+                } else {
+                    hotspotTextEl.innerHTML = hotspotDB.default;
+                    return false; // Retorna false se clicou fora
+                }
+            }
+
+            if (quoteContainer) {
+                // 2. Adiciona o listener de CLICK (para Desktop)
+                quoteContainer.addEventListener('click', (e) => {
+                    handleHotspotInteraction(e.target);
+                });
+
+                // 3. Adiciona o listener de TOUCHSTART (para Celular)
+                quoteContainer.addEventListener('touchstart', (e) => {
+                    // Chama a mesma função
+                    const hotspotWasTouched = handleHotspotInteraction(e.target);
+                    
+                    // Se um hotspot foi tocado, previne o "ghost click"
+                    // e a seleção de texto no celular.
+                    if (hotspotWasTouched) {
+                        e.preventDefault();
+                    }
+                    // Se não tocou num hotspot, não faz nada (permite scroll)
+                });
+            }
+
+
+            // --- Lógica do Player de MP3 (Principal e Mini) ---
+            
+            const audioPlayer = document.getElementById('custom-player');
+            const playerArt = document.getElementById('player-art');
+            const playerTitle = document.getElementById('player-title');
+            const playPauseBtn = document.getElementById('player-play-pause');
+            const playPauseIcon = playPauseBtn.querySelector('ion-icon');
+            const prevBtn = document.getElementById('player-prev');
+            const nextBtn = document.getElementById('player-next');
+            const scrubber = document.getElementById('player-scrubber');
+            const currentTimeEl = document.getElementById('player-current-time');
+            const totalTimeEl = document.getElementById('player-total-time');
+            const songButtons = document.querySelectorAll('.song-button');
+            const songExplanationTextEl = document.getElementById('song-explanation-text');
+            
+            const miniPlayer = document.getElementById('mini-player');
+            const miniPlayerArt = document.getElementById('mini-player-art');
+            const miniPlayerTitle = document.getElementById('mini-player-title');
+            const miniPlayPauseBtn = document.getElementById('mini-player-play-pause');
+            const miniPlayPauseIcon = miniPlayPauseBtn.querySelector('ion-icon');
+            const miniPlayerCloseBtn = document.getElementById('mini-player-close');
+            const miniPlayerPrevBtn = document.getElementById('mini-player-prev');
+            const miniPlayerNextBtn = document.getElementById('mini-player-next');
+            const miniPlayerCloseMobileBtn = document.getElementById('mini-player-close-mobile');
+
+            let currentSongIndex = 0;
+            let isPlaying = false;
+            let hasPlayedOnce = false; 
+
+            function playSong(index) {
+                const song = songDB[index];
+                
+                audioPlayer.src = song.path;
+                
+                playerArt.src = song.art;
+                playerTitle.textContent = song.title;
+                songExplanationTextEl.innerHTML = song.explanation;
+                
+                miniPlayerArt.src = song.art;
+                miniPlayerTitle.textContent = song.title;
+
+                audioPlayer.play();
+                isPlaying = true;
+
+                playPauseIcon.name = "pause-outline"; 
+                miniPlayPauseIcon.name = "pause-outline";
+
+                if (!hasPlayedOnce) {
+                    miniPlayer.classList.remove('hidden');
+                    setTimeout(() => miniPlayer.classList.add('visible'), 50); 
+                    hasPlayedOnce = true;
+                }
+
+                songButtons.forEach(btn => btn.classList.remove('active'));
+                const activeButton = document.querySelector(`.song-button[data-song="${index}"]`);
+                activeButton.classList.add('active');
+
+                currentSongIndex = index;
+            }
+
+            function togglePlayPause() {
+                if (isPlaying) {
+                    audioPlayer.pause();
+                    playPauseIcon.name = "play-outline";
+                    miniPlayPauseIcon.name = "play-outline";
+                } else {
+                    if (!hasPlayedOnce) {
+                        miniPlayer.classList.remove('hidden');
+                        setTimeout(() => miniPlayer.classList.add('visible'), 50);
+                        hasPlayedOnce = true;
+                    }
+                    audioPlayer.play();
+                    playPauseIcon.name = "pause-outline";
+                    miniPlayPauseIcon.name = "pause-outline";
+                }
+                isPlaying = !isPlaying;
+            }
+
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+            }
+
+            // --- Event Listeners do Player ---
+
+            audioPlayer.addEventListener('timeupdate', () => {
+                if (audioPlayer.duration) {
+                    scrubber.value = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+                    currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
+                }
+            });
+
+            audioPlayer.addEventListener('loadedmetadata', () => {
+                totalTimeEl.textContent = formatTime(audioPlayer.duration);
+                scrubber.value = 0;
+            });
+
+            scrubber.addEventListener('input', () => {
+                if (audioPlayer.duration) {
+                    audioPlayer.currentTime = (scrubber.value / 100) * audioPlayer.duration;
+                }
+            });
+
+            playPauseBtn.addEventListener('click', togglePlayPause);
+            miniPlayPauseBtn.addEventListener('click', togglePlayPause);
+
+            miniPlayerNextBtn.addEventListener('click', () => {
+                nextBtn.click();
+            });
+            
+            miniPlayerPrevBtn.addEventListener('click', () => {
+                prevBtn.click();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentSongIndex = (currentSongIndex + 1) % songDB.length;
+                playSong(currentSongIndex);
+            });
+
+            prevBtn.addEventListener('click', () => {
+                currentSongIndex = (currentSongIndex - 1 + songDB.length) % songDB.length;
+                playSong(currentSongIndex);
+            });
+
+            audioPlayer.addEventListener('ended', () => {
+                nextBtn.click();
+            });
+ 
+            function closeMiniPlayer() {
+                miniPlayer.classList.remove('visible');
+                if (isPlaying) {
+                    togglePlayPause(); // Pausa a música ao fechar
+                }
+                setTimeout(() => miniPlayer.classList.add('hidden'), 500);
+                hasPlayedOnce = false; // Permite reabrir
+            }
+            
+            miniPlayerCloseBtn.addEventListener('click', closeMiniPlayer);
+            miniPlayerCloseMobileBtn.addEventListener('click', closeMiniPlayer);
+
+            songButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    playSong(parseInt(button.dataset.song));
+                });
+            });
+
+
+            // --- Lógica do Player de Vídeo ---
+            const videoButtons = document.querySelectorAll('.video-button');
+            const videoIframeEl = document.getElementById('video-iframe');
+            const localVideoPlayerEl = document.getElementById('local-video-player');
+            const videoExplanationTextEl = document.getElementById('video-explanation-text');
+
+            const videoModal = document.getElementById('video-modal');
+            const modalVideo = document.getElementById('modal-video');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+            const expandVideoBtn = document.getElementById('expand-video-btn');
+
+
+            function playVideo(index) {
+                const video = videoDB[index];
+                
+                // Se for 'youtube' ou 'gdrive', usamos o IFRAME
+                if (video.type === 'youtube' || video.type === 'gdrive') {
+                    // ### LÓGICA SIMPLIFICADA (CORRIGIDA) ###
+                    // Agora, tanto gdrive (/preview) quanto youtube (/embed) usam o video.path diretamente
+                    videoIframeEl.src = video.path; 
+                    videoIframeEl.classList.remove('hidden');
+                    
+                    localVideoPlayerEl.classList.add('hidden');
+                    localVideoPlayerEl.pause(); 
+                    localVideoPlayerEl.src = "";
+                    expandVideoBtn.classList.add('hidden');
+                } 
+                // Se for 'local', usamos o player de VÍDEO LOCAL
+                else if (video.type === 'local') { 
+                    if (video.path === "videos/seu-video.mp4") { // Mantém o aviso
+                         console.warn("AVISO: O arquivo de vídeo local não foi carregado.");
+                    }
+                    localVideoPlayerEl.src = video.path;
+                    modalVideo.src = video.param; 
+                    localVideoPlayerEl.classList.remove('hidden');
+                    
+                    videoIframeEl.classList.add('hidden'); // Esconde o iframe
+                    videoIframeEl.src = "about:blank"; // Para o vídeo do iframe (se houver)
+                    
+                    expandVideoBtn.classList.remove('hidden'); // Mostra o botão de expandir modal
+                }
+
+                videoExplanationTextEl.innerHTML = video.explanation;
+
+                videoButtons.forEach(btn => btn.classList.remove('active'));
+                const activeButton = document.querySelector(`.video-button[data-video="${index}"]`);
+                activeButton.classList.add('active');
+            }
+
+            videoButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    playVideo(button.dataset.video);
+                });
+            });
+
+            expandVideoBtn.addEventListener('click', () => {
+                localVideoPlayerEl.pause(); 
+                modalVideo.currentTime = localVideoPlayerEl.currentTime; 
+                videoModal.classList.remove('hidden');
+                videoModal.style.opacity = '1'; // Ativa a transição
+                modalVideo.play();
+            });
+
+            function closeModal() {
+                videoModal.style.opacity = '0'; // Desativa a transição
+                setTimeout(() => {
+                    videoModal.classList.add('hidden');
+                }, 300); // Espera a transição terminar
+                modalVideo.pause();
+            }
+
+            modalCloseBtn.addEventListener('click', closeModal);
+            videoModal.addEventListener('click', (e) => {
+                // Fecha se clicar fora do 'video-modal-content'
+                if (e.target === videoModal) {
+                    closeModal();
+                }
+            });
+
+
+            // --- INICIALIZAÇÃO ---
+            const firstSong = songDB[0];
+            audioPlayer.src = firstSong.path;
+            playerArt.src = firstSong.art;
+            playerTitle.textContent = firstSong.title;
+            songExplanationTextEl.innerHTML = firstSong.explanation;
+            miniPlayerArt.src = firstSong.art;
+            miniPlayerTitle.textContent = firstSong.title;
+            
+            // Texto default do Hotspot
+            hotspotTextEl.innerHTML = hotspotDB.default;
+            
+            // Carrega o primeiro vídeo (que agora é do Drive)
+            playVideo(0);
+        });
+
+    </script>
+
+</body>
+</html>
